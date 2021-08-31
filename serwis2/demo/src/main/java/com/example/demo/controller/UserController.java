@@ -1,12 +1,12 @@
-package com.example.demo;
+package com.example.demo.controller;
 
+import com.example.demo.model.AppUser;
+import com.example.demo.Service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import javax.persistence.GeneratedValue;
+
 import java.security.Principal;
 
 @Controller
@@ -18,7 +18,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("hello")
+    @GetMapping("/hello")
     public String hello(Principal principal,Model model){
        model.addAttribute("name",principal.getName());
         return "hello";
