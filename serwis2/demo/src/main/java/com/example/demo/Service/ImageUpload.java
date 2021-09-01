@@ -19,9 +19,9 @@ public class ImageUpload {
     private ImageRepository imageRepository;
     private Cloudinary cloudinary;
 
-@Autowired
+    @Autowired
     public ImageUpload(ImageRepository imageRepository){
-    this.imageRepository=imageRepository;
+        this.imageRepository=imageRepository;
         cloudinary = new Cloudinary(ObjectUtils.asMap(
                 "cloud_name", "",
                 "api_key", "",
@@ -34,9 +34,22 @@ public class ImageUpload {
             uploadResult = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
             imageRepository.save(new Image(uploadResult.get("url").toString()));
         } catch (IOException e) {
-           // e.printStackTrace();
+            // e.printStackTrace();
         }
         return uploadResult.get("url").toString();
+    }
+
+    public void deleteImage(String public_id){
+        Map delete = null;
+        try {
+            //Working can delete
+             delete = cloudinary.uploader().destroy(public_id,
+                    ObjectUtils.emptyMap());
+            //todo debug what is public id
+           // imageRepository.existByPath(delete.get("url").toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

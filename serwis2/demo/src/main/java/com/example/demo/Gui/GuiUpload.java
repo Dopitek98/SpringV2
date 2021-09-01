@@ -10,6 +10,9 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.swing.*;
+import java.io.File;
+
 
 @Route("upload")
 public class GuiUpload extends VerticalLayout {
@@ -24,13 +27,15 @@ public class GuiUpload extends VerticalLayout {
         Button button = new Button("upload");
         Label label = new Label();
 
+
         button.addClickListener(buttonClickEvent ->{
-               String uploadImage = imageUpload.uploadFileAndSave(textField.getValue());
+
+            String uploadImage = imageUpload.uploadFileAndSave(textField.getValue());
             Image image = new Image(uploadImage,"brak obrazka");
             label.setText("Obrazek wrzucony");
             add(label);
             add(image);
-                });
+        });
         add(textField);
         add(button);
     }
