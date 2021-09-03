@@ -2,6 +2,7 @@ package com.example.demo.Gui;
 
 import com.example.demo.Repository.ImageRepository;
 import com.example.demo.model.Image;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.demo.Service.ImageUpload;
@@ -15,19 +16,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @Route("gallery")
-public class GuiGallery extends VerticalLayout {
+public class GuiGallery extends Component {
 
+    public class GalleryPage extends VerticalLayout {
     private ImageRepository imageRepository;
 
     @Autowired
-    public GuiGallery(ImageRepository imageRepository) {
+    public GalleryPage(ImageRepository imageRepository) {
         this.imageRepository = imageRepository;
 
         List<Image> list = imageRepository.findAll();
-        list.stream().forEach(element->{
+        list.stream().forEach(element -> {
             com.vaadin.flow.component.html.Image image =
-                    new com.vaadin.flow.component.html.Image(element.getPath(),"brak");
-                    add(image);
+                    new com.vaadin.flow.component.html.Image(element.getPath(), "brak");
+            add(image);
         });
     }
 }
+}
+

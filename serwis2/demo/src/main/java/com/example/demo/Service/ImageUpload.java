@@ -7,6 +7,7 @@ import com.example.demo.Repository.ImageRepository;
 import com.example.demo.model.Image;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,16 +40,14 @@ public class ImageUpload {
         return uploadResult.get("url").toString();
     }
 
+
     public void deleteImage(String public_id){
-        Map delete = null;
         try {
-            //Working can delete
-             delete = cloudinary.uploader().destroy(public_id,
+             cloudinary.uploader().destroy(public_id,
                     ObjectUtils.emptyMap());
-            //todo debug what is public id
-           // imageRepository.existByPath(delete.get("url").toString());
+           imageRepository.DeleteByPath(public_id);
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 

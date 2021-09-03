@@ -3,7 +3,6 @@ package com.example.demo.Gui;
 import com.example.demo.Service.ImageUpload;
 import com.example.demo.Service.UserService;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -21,28 +20,44 @@ public class AdminGui extends VerticalLayout {
         this.userService=userService;
         this.imageUpload=imageUpload;
 
-        TextField textField = new TextField();
-        Button button = new Button("Delete User by Id");
-        Label label = new Label("Deleting user");
+        TextField DeleteById = new TextField();
+        Button DeleteByIdButton = new Button("Delete User by Id");
+        Label DeleteByIdLabel = new Label("Deleting user");
+
+        TextField DeleteByUsername = new TextField();
+        Button DeleteByUsernameButton = new Button("Delete User by username");
+        Label DeleteByUsernameLabel = new Label("Deleting user by username");
 
         TextField textField2 = new TextField();
         Button imageDelete = new Button("Delete image by path");
         Label labeldelete = new Label("Deleting image");
+      //  Text text = new Text("Testowy napis cos tam wyswietlajacy");
 
-        button.addClickListener(buttonClickEvent ->{
-            userService.deleteUser(Long.valueOf(textField.getValue()));
+        DeleteByIdButton.addClickListener(buttonClickEvent ->{
+            userService.deleteUserById(Long.valueOf(DeleteById.getValue()));
         });
+
+        DeleteByUsernameButton.addClickListener(buttonClickEvent ->{
+            userService.deleteUserByUsername((DeleteByUsername.getValue().toString()));
+        });
+
         imageDelete.addClickListener(buttonClickEvent ->{
             imageUpload.deleteImage(textField2.getValue());
         });
-        //delete User add
-        add(textField);
-        add(button);
-        add(label);
-        //delete Image add
+
+        //delete User
+        add(DeleteById);
+        add(DeleteByIdButton);
+        add(DeleteByIdLabel);
+
+        add(DeleteByUsername);
+        add(DeleteByUsernameButton);
+        add(DeleteByUsernameLabel);
+        //delete Image
         add(textField2);
         add(imageDelete);
         add(labeldelete);
+
     }
 
 

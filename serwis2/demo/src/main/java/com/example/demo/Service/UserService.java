@@ -22,11 +22,19 @@ public class UserService {
         appUserRepository.save(appUser);
     }
 
-    public void deleteUser(Long id) {
+    public void deleteUserById(Long id) {
         boolean UserExist = appUserRepository.existsById(id);
         if(!UserExist){
-            throw new IllegalStateException("Id uzytkownika "+id+" ,nie istnieje");
+            throw new IllegalStateException();
         }
         appUserRepository.deleteById(id);
+    }
+
+    public void deleteUserByUsername(String username) {
+        boolean UsernameExist = appUserRepository.findUserByUsername(username);
+        if(!UsernameExist){
+            throw new IllegalStateException();
+        }
+        appUserRepository.DeleteByUsername(username);
     }
 }
