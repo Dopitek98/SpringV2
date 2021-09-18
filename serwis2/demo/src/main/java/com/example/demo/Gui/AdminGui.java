@@ -1,6 +1,6 @@
 package com.example.demo.Gui;
 
-import com.example.demo.Service.ImageUpload;
+import com.example.demo.Service.ImageService;
 import com.example.demo.Service.UserService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Label;
@@ -13,12 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class AdminGui extends VerticalLayout {
 
     private UserService userService;
-    private ImageUpload imageUpload;
+    private ImageService imageService;
 
     @Autowired
-    public AdminGui(UserService userService,ImageUpload imageUpload) {
+    public AdminGui(UserService userService, ImageService imageService) {
         this.userService=userService;
-        this.imageUpload=imageUpload;
+        this.imageService = imageService;
 
         TextField DeleteById = new TextField();
         Button DeleteByIdButton = new Button("Delete User by Id");
@@ -42,7 +42,7 @@ public class AdminGui extends VerticalLayout {
         });
 
         imageDelete.addClickListener(buttonClickEvent ->{
-            imageUpload.deleteImage(textField2.getValue());
+            imageService.deleteImage(textField2.getValue());
         });
 
         //delete User

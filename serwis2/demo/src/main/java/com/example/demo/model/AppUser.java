@@ -6,12 +6,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Collection;
-import java.util.Collections;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.*;
 
 @Entity
 public class AppUser implements UserDetails {
@@ -20,14 +17,16 @@ public class AppUser implements UserDetails {
     @GeneratedValue(generator = "inc")
     @GenericGenerator(name = "inc", strategy = "increment")
     private Long id;
+    @NotNull
     private String username;
+    @NotNull
     private String password;
     private String role;
-   // private boolean isEnabled;
-
-   // public void setEnabled(boolean enabled) {
-   //     isEnabled = enabled;
-  //  }
+/*
+    @OneToMany
+    @JoinColumn(name = "Author_name")
+    private List<Image> images = new ArrayList<>();
+    */
 
     public Long getId() {
         return id;

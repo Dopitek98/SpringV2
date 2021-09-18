@@ -35,6 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                // .antMatchers("/upload").hasAuthority("ROLE_ADMIN")
                  .antMatchers("/upload").authenticated()
                 .antMatchers("/AdminGui").hasAuthority("ROLE_ADMIN")
+                .antMatchers("/imagelist").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/gallery").permitAll()
 
                  .and()

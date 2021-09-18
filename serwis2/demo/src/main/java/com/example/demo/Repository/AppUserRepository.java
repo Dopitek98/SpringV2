@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.model.AppUser;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -21,7 +22,7 @@ public interface AppUserRepository extends JpaRepository<AppUser, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM App_User WHERE username =:username",nativeQuery = true)
+    @Query(value = "DELETE FROM App_User WHERE USERNAME =:username",nativeQuery = true)
     void DeleteByUsername(@Param("username") String username);
 
     @Query(value = "Select FROM App_User WHERE username=:username",nativeQuery = true)

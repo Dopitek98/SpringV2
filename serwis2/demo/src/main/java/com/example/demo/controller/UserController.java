@@ -1,16 +1,19 @@
 package com.example.demo.controller;
 
+import com.example.demo.Service.ImageService;
 import com.example.demo.model.AppUser;
 import com.example.demo.Service.UserService;
+import com.example.demo.model.Image;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -44,4 +47,17 @@ public class UserController {
         userService.addUser(appUser);
         return "sign-up";
     }
+/*
+    @GetMapping("/gallery")
+    public ResponseEntity<List<Image>> getAllEmployees(
+            @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            @RequestParam(defaultValue = "id") String sortBy)
+    {
+      List<Image> list = ImageService.getAllEmployees(pageNo, pageSize, sortBy);
+
+        return new ResponseEntity<List<Image>>(list, new HttpHeaders(), HttpStatus.OK);
+    }
+
+ */
 }

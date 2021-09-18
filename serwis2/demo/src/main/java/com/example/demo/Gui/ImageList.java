@@ -23,6 +23,7 @@ public class ImageList extends VerticalLayout {
         Grid<Image> grid = new Grid<>(Image.class);
         grid.setItems(fullImageList);
         add(grid);
+
     }
 
 }

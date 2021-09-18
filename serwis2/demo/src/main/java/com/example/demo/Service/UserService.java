@@ -5,6 +5,8 @@ import com.example.demo.Repository.AppUserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -31,9 +33,9 @@ public class UserService {
     }
 
     public void deleteUserByUsername(String username) {
-        boolean UsernameExist = appUserRepository.findUserByUsername(username);
-        if(!UsernameExist){
-            throw new IllegalStateException();
+        Object object = appUserRepository.findByUsername(username);
+        if(object==null){
+            throw new IllegalStateException("Nie ma takiego uzytkownika");
         }
         appUserRepository.DeleteByUsername(username);
     }

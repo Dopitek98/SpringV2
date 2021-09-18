@@ -1,28 +1,21 @@
 package com.example.demo.Gui;
 
+import com.cloudinary.Transformation;
 import com.example.demo.Repository.ImageRepository;
 import com.example.demo.model.Image;
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.example.demo.Service.ImageUpload;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.router.Route;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 @Route("gallery")
-public class GuiGallery extends Component {
+public class GuiGallery extends VerticalLayout{
 
-    public class GalleryPage extends VerticalLayout {
     private ImageRepository imageRepository;
 
     @Autowired
-    public GalleryPage(ImageRepository imageRepository) {
+    public GuiGallery(ImageRepository imageRepository) {
         this.imageRepository = imageRepository;
 
         List<Image> list = imageRepository.findAll();
@@ -33,5 +26,5 @@ public class GuiGallery extends Component {
         });
     }
 }
-}
+
 

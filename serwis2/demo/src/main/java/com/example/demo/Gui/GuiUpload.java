@@ -1,7 +1,7 @@
 package com.example.demo.Gui;
 
 
-import com.example.demo.Service.ImageUpload;
+import com.example.demo.Service.ImageService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
@@ -10,18 +10,15 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.swing.*;
-import java.io.File;
-
 
 @Route("upload")
 public class GuiUpload extends VerticalLayout {
 
-    private ImageUpload imageUpload;
+    private ImageService imageService;
 
     @Autowired
-    public GuiUpload(ImageUpload imageUpload) {
-        this.imageUpload = imageUpload;
+    public GuiUpload(ImageService imageService) {
+        this.imageService = imageService;
 
         TextField textField = new TextField();
         Button button = new Button("upload");
@@ -30,7 +27,7 @@ public class GuiUpload extends VerticalLayout {
 
         button.addClickListener(buttonClickEvent ->{
 
-            String uploadImage = imageUpload.uploadFileAndSave(textField.getValue());
+            String uploadImage = imageService.uploadFileAndSave(textField.getValue());
             Image image = new Image(uploadImage,"brak obrazka");
             label.setText("Obrazek wrzucony");
             add(label);

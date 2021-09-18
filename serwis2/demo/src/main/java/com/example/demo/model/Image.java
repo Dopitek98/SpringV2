@@ -2,10 +2,9 @@ package com.example.demo.model;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Image {
@@ -14,20 +13,32 @@ public class Image {
     @GenericGenerator(name = "inc", strategy = "increment")
     private Long id;
     private String path;
+    private String author;
+
+    @OneToMany
+    @JoinColumn(name = "ImageId")
+    private List<Post> post = new ArrayList<>();
 
     public Image() {
+    }
+
+
+
+    public Image(String path, String author) {
+        this.path = path;
+        this.author = author;
     }
 
     public Image(String path) {
         this.path = path;
     }
 
-    public Long getId() {
+    public Long getImageid() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setImageid(Long imageid) {
+        this.id = imageid;
     }
 
     public String getPath() {

@@ -23,4 +23,6 @@ public interface ImageRepository extends JpaRepository<Image,Long> {
     @Query(value = "SELECT * FROM IMAGE",nativeQuery = true)
     List<Image> Imagelist();
 
+    //@Query("UPDATE")
+
 }
